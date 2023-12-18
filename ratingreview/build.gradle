@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+    id 'org.jetbrains.kotlin.android'
+}
+
+group = 'com.phillipsconnect'
+version = '0.0.1'
+def artifact = 'ratingreview'
+
+android {
+    defaultConfig {
+        compileSdk 34
+        minSdkVersion 19
+        targetSdkVersion 34
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    namespace 'com.phillipsconnect.ratingreview'
+}
+
+dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-config-ktx")
+
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.airbnb.android:lottie:5.2.0'
+    implementation 'com.google.android.play:review-ktx:2.0.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
+}
+
+afterEvaluate {
+//    Production Publish
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = group
+                artifactId = artifact
+                version = version
+            }
+        }
+    }
+}

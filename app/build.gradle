@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    defaultConfig {
+        compileSdk 34
+        applicationId "com.phillipsconnect.app"
+        minSdk 19
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    namespace 'com.phillipsconnect.app'
+}
+
+dependencies {
+
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation project(':ratingreview')
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.3.0'
+
+}
