@@ -4,9 +4,13 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-group = 'com.phillipsconnect'
+group = 'com.github.ThomasWDev'
 version = '0.0.1'
 def artifact = 'ratingreview'
+
+tasks.register('wrapper', Wrapper) {
+    gradleVersion = '8.0.2'
+}
 
 android {
     defaultConfig {
